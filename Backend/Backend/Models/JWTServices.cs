@@ -23,16 +23,16 @@ namespace Backend.Models
         }
         #endregion
         #region Methods
-        public object GenerateToken(String id,String Name,String Email,String LastName)
+        public string GenerateToken(User user)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.SecretKey));
             var signature= new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
             var payload = new[]
             {
-                new Claim("id",id),
-                new Claim("name",Name),
-                new Claim("email",Email),
-                new Claim("lastName",LastName)
+                new Claim("id",user.Id.ToString()),
+                new Claim("name",user.Name),
+                new Claim("email",user.Email),
+                new Claim("lastName",user.LastName)
             };
 
             var jwtToken = new JwtSecurityToken(
@@ -44,7 +44,7 @@ namespace Backend.Models
                 
                 
                 );
-            var response = new { token=new JwtSecurityTokenHandler().WriteToken(jwtToken) ,status="log"};
+            var response = new JwtSecurityTokenHandler().WriteToken(jwtToken) ;
             return response;
            
         }

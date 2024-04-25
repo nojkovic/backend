@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
-    [DbContext(typeof(UserContext))]
+    [DbContext(typeof(VisasContext))]
     [Migration("20240410202006_Initial")]
     partial class Initial
     {

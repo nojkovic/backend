@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
         policyBuilder.AllowCredentials();
     });
 });
-builder.Services.AddDbContext<UserContext>(options =>
+builder.Services.AddDbContext<VisasContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
